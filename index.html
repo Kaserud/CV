@@ -76,6 +76,15 @@
     <p>Velkommen til Sykkel-NM for brannvesen på Beitostølen</p>
   </header>
   <div class="main-content">
+    <div id="weather-widget">
+  <h2>Værvarsel for Beitostølen</h2>
+  <p>Temperatur: <span id="temperature"></span>°C</p>
+  <p>Værforhold: <span id="weather-condition"></span></p>
+</div>
+
+
+
+    
     <h2>Informasjon</h2>
     
     <p>Snart skal vi avgårde til Sykkel-NM for brannvesenet på Beitostølen den 8.-10. september. Dette arrangementet er et høydepunkt for oss, og vi ser frem til å samles igjen. Jeg har tatt meg noen friheter med organisering</p>
@@ -221,5 +230,26 @@
   <footer>
     <p>&copy; 2023 Brann-NM i Sykkel. Alle rettigheter reservert.</p>
   </footer>
+  <script>
+  // Din OpenWeatherMap API-nøkkel
+  const apiKey = 'DIN_API_NØKKEL';
+
+  // URL for værdata
+  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=Beitostolen&units=metric&appid=${apiKey}`;
+
+  // Hent værdata fra OpenWeatherMap
+  fetch(apiUrl)
+    .then(response => response.json())
+    .then(data => {
+      const temperature = data.main.temp;
+      const weatherCondition = data.weather[0].description;
+
+      // Oppdater HTML med værdata
+      document.getElementById('temperature').textContent = temperature;
+      document.getElementById('weather-condition').textContent = weatherCondition;
+    })
+    .catch(error => console.error('Feil ved henting av værdata:', error));
+</script>
+
 </body>
 </html>
