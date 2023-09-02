@@ -230,25 +230,28 @@
   <footer>
     <p>&copy; 2023 Brann-NM i Sykkel. Alle rettigheter reservert.</p>
   </footer>
-  <script>
-  // Din OpenWeatherMap API-nøkkel
-  const apiKey = '03b9ff1b8a4facf6a7786a5a1bce24c5';
+  <!-- the DIV that will contain the widget -->
+<div class="weatherWidget" ></div>
 
-  // URL for værdata
-  const apiUrl = `https://openweathermap.org/city/3153364${apiKey}`;
-
-  // Hent værdata fra OpenWeatherMap
-  fetch(apiUrl)
-    .then(response => response.json())
-    .then(data => {
-      const temperature = data.main.temp;
-      const weatherCondition = data.weather[0].description;
-
-      // Oppdater HTML med værdata
-      document.getElementById('temperature').textContent = temperature;
-      document.getElementById('weather-condition').textContent = weatherCondition;
-    })
-    .catch(error => console.error('Feil ved henting av værdata:', error));
+<script>
+   window.weatherWidgetConfig =  window.weatherWidgetConfig || [];
+   window.weatherWidgetConfig.push({
+       selector:".weatherWidget",
+       apiKey:"03b9ff1b8a4facf6a7786a5a1bce24c5", //Sign up for your personal key
+       location:"London, UK", //Enter an address
+       unitGroup:"metric", //"us" or "metric"
+       forecastDays:5, //how many days forecast to show
+       title:"London,UK", //optional title to show in the 
+       showTitle:true, 
+       showConditions:true
+   });
+  
+   (function() {
+   var d = document, s = d.createElement('script');
+   s.src = 'https://www.visualcrossing.com/widgets/forecast-simple/weather-forecast-widget-simple.js';
+   s.setAttribute('data-timestamp', +new Date());
+   (d.head || d.body).appendChild(s);
+   })();
 </script>
 
 </body>
