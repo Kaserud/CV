@@ -287,7 +287,7 @@
     <!-- the DIV that will contain the widget -->
     <div class="weatherWidget"></div>
 
-    <script>
+    <script type="module">
       // Din OpenWeatherMap API-nøkkel
       const apiKey = "03b9ff1b8a4facf6a7786a5a1bce24c5";
 
@@ -295,21 +295,73 @@
       const weatherLocation = "Heggenes, NO";
 
       // URL for værdata
-      const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${weatherLocation}&units=metric&appid=${apiKey}`;
+      const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${weatherLocation}&units=metric&appid=${apiKey}`;
 
-      // Hent værdata fra OpenWeatherMap
-      fetch(apiUrl)
-        .then((response) => response.json())
-        .then((data) => {
-          const temperature = data.main.temp;
-          const condition = data.weather[0].description;
+      // Weather forecast upper limit in seconds
+      const outerRange = 432000;
 
-          // Oppdater HTML med værdata
-          document.getElementById("temperature-friday").textContent =
-            temperature;
-          document.getElementById("condition-friday").textContent = condition;
-        })
-        .catch((error) => console.error("Feil ved henting av værdata:", error));
+      function getNextWeekdayNoon(targetWeekday) {
+        let today = new Date();
+        const daysUntilTarget = (targetWeekday - today.getDay() + 7) % 7 || 7;
+        today.setDate(today.getDate() + daysUntilTarget);
+        today.setHours(12, 0, 0, 0);
+        return today.getTime();
+      }
+
+      // Free api gives next 5 days, at 3 hour intervals, have to find closest to target
+      async function fetchWeatherNearTimestamp(targetTimestamp) {
+        const now = new Date();
+        const secondsFromTarget = Math.abs(now.getTime()-targetTimestamp) 
+        if (secondsFromTarget > outerRange) { // 5 days in seconds
+          return {
+            temperature: 'ukjent',
+            description: `Utenfor tilgjengelig 5 dagers værmelding`,
+          }
+        }
+
+        // Hent værdata fra OpenWeatherMap
+        return await fetch(apiUrl)
+          .then((response) => response.json())
+          .then((data) => {
+            // We find the closest to the target timestamp
+            let closestElement = null;
+            let closestDifference = Infinity;
+            // Find closest to target timestamp
+            data.list.forEach((element) => {
+              const difference = Math.abs(element.dt - targetTimestamp);
+              if (difference < closestDifference) {
+                closestDifference = difference;
+                closestElement = element;
+              }
+            });
+            return {
+              temperature: `${closestElement.main.temp}°C`,
+              description: closestElement.weather[0].description,
+            };
+          })
+          .catch((error) =>
+            console.error("Feil ved henting av værdata:", error)
+          );
+      }
+
+      const fridayTimestamp = getNextWeekdayNoon(5); // 5 is Friday, 0 is Sunday
+      const fridayWeather = await fetchWeatherNearTimestamp(fridayTimestamp);
+      // Oppdater HTML med værdata
+      document.getElementById("temperature-friday").textContent =
+        fridayWeather.temperature;
+      
+      document.getElementById("condition-friday").textContent =
+        fridayWeather.description;
+
+
+      const saturdayTimestamp = getNextWeekdayNoon(6); // 6 is saturday, 0 is Sunday
+      const saturdayWeather = await fetchWeatherNearTimestamp(saturdayTimestamp);
+      // Oppdater HTML med værdata
+      document.getElementById("temperature-saturday").textContent =
+        saturdayWeather.temperature;
+      document.getElementById("condition-saturday").textContent =
+        saturdayWeather.description;
+    </script>
     </script>
   </body>
 </html>
