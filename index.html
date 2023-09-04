@@ -1,267 +1,367 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Brann-NM i Sykkel 2023</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-image: url('https://www.ishn.com/ext/resources/900x550/fire-900.jpg?1583411594');
-    background-color: #f5f5f5;
-    color: #333;
-  }
-  header {
-    background-color: #1a1a1a;
-    color: #fff;
-    text-align: center;
-    padding: 1rem 0;
-     
-    
-  }
-  h1 {
-    margin: 0;
-    font-size: 2rem;
-  }
-  .main-content {
-    padding: 2rem;
-    background-color: #fff;
-    margin: 2rem;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
-  p {
-    line-height: 1.6;
-  }
-  .participant-list {
-    margin: 2rem;
-    background-color: #fff;
-    padding: 1.5rem;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  .participant {
-    list-style-type: none;
-    margin-bottom: 1.5rem;
-    padding: 1rem;
-    border: 1px solid #DC143C;
-    border-radius: 10px;
-    
-  }
-  .participant h2 {
-    font-size: 1.2rem;
-    margin: 0 0 1rem;
-  }
-  .responsibilities {
-    font-weight: bold;
-  }
-  footer {
-    text-align: center;
-    padding: 1rem;
-    background-color: #1a1a1a;
-    color: #fff;
-  }
-</style>
-</head>
-<body>
-  
-  <header>
-    <h1>Brann-NM i Sykkel 2023</h1>
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScs6CtNn1JVnf08hR-TKscEqFIQDT2vxc9oHFvhGDXjw&s" alt="Brann-NM Logo">
-    <p>Velkommen til Sykkel-NM for brannvesen på Beitostølen</p>
-  </header>
-  <div class="main-content">
-    <div id="weather-widget">
-  <h1>Værvarsel for Beitostølen fredag</h1>
-    <p><strong>Temperatur:</strong> <span id="temperature"></span>20°C</p>
-    
-    <p><strong>Værforhold:</strong> <span id="condition"></span>Noe overskyet med sol og vindstyrke 1m/s</p>
-<h1>Værvarsel for Beitostølen lørdag</h1>
-    <p><strong>Temperatur:</strong> <span id="temperature"></span>11-20°C</p>
-    
-    <p><strong>Værforhold:</strong> <span id="condition"></span>Overskyet med en vindstyrke 1m/s</p>
-</div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Brann-NM i Sykkel 2023</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-image: url("https://www.ishn.com/ext/resources/900x550/fire-900.jpg?1583411594");
+        background-color: #f5f5f5;
+        color: #333;
+      }
+      header {
+        background-color: #1a1a1a;
+        color: #fff;
+        text-align: center;
+        padding: 1rem 0;
+      }
+      h1 {
+        margin: 0;
+        font-size: 2rem;
+      }
+      .main-content {
+        padding: 2rem;
+        background-color: #fff;
+        margin: 2rem;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
+      p {
+        line-height: 1.6;
+      }
+      .participant-list {
+        margin: 2rem;
+        background-color: #fff;
+        padding: 1.5rem;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .participant {
+        list-style-type: none;
+        margin-bottom: 1.5rem;
+        padding: 1rem;
+        border: 1px solid #dc143c;
+        border-radius: 10px;
+      }
+      .participant h2 {
+        font-size: 1.2rem;
+        margin: 0 0 1rem;
+      }
+      .responsibilities {
+        font-weight: bold;
+      }
+      footer {
+        text-align: center;
+        padding: 1rem;
+        background-color: #1a1a1a;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Brann-NM i Sykkel 2023</h1>
+      <img
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScs6CtNn1JVnf08hR-TKscEqFIQDT2vxc9oHFvhGDXjw&s"
+        alt="Brann-NM Logo"
+      />
+      <p>Velkommen til Sykkel-NM for brannvesen på Beitostølen</p>
+    </header>
+    <div class="main-content">
+      <div id="weather-widget">
+        <!-- For Friday -->
+        <h1>Værvarsel for Beitostølen fredag</h1>
+        <p>
+          <strong>Temperatur:</strong> <span id="temperature-friday"></span>
+        </p>
+        <p><strong>Værforhold:</strong> <span id="condition-friday"></span></p>
+        <!-- For Saturday -->
+        <h1>Værvarsel for Beitostølen lørdag</h1>
+        <p>
+          <strong>Temperatur:</strong> <span id="temperature-saturday"></span>
+        </p>
+        <p>
+          <strong>Værforhold:</strong> <span id="condition-saturday"></span>
+        </p>
+      </div>
 
+      <h2>Informasjon</h2>
 
+      <p>
+        Snart skal vi avgårde til Sykkel-NM for brannvesenet på Beitostølen den
+        8.-10. september. Dette arrangementet er et høydepunkt for oss, og vi
+        ser frem til å samles igjen. Jeg har tatt meg noen friheter med
+        organisering
+      </p>
+      <p>
+        Vi er takknemlige for at Ida og hennes foreldre låner oss hytta på
+        Ørrelie 5, Beitostølen, der vi skal overnatte. Det tar ca. 3 timer og 30
+        minutter å kjøre dit. Hytten har 13 sengeplasser, foreløpig er vi 12 på
+        hytta med min liste(Ingarth og Ronnie sover i bobil. Vi oppfordrer til
+        godt kameratskap og deling av rom.
+      </p>
+      <p>
+        I forberedelsene til Sykkel NM har det vært noe planlegging. Jeg vil ta
+        ansvar for innkjøp av mat, som inkluderer middag på fredag, frokost på
+        lørdag og søndag, pluss snacks. Lørdag kveld drar vi på banketten, og
+        jeg håper det blir en minnerik opplevelse for alle.
+      </p>
+      <p>
+        Vi har også sikret oss biler fra NRBR som vil bistå under arrangementet,
+        Miriam, Ludvig og Kribe har fått låne Caddy fra forebyggende. Om du
+        skulle ha behov for transport av sykkel ved hjelp av disse Caddyene ta
+        kontakt med en av dem. Gi meg beskjed (Kenny) om det skulle mangle noe
+        informasjon eller noe ikke stemmer så endrer jeg info underveis.
+      </p>
 
-    
-    <h2>Informasjon</h2>
-    
-    <p>Snart skal vi avgårde til Sykkel-NM for brannvesenet på Beitostølen den 8.-10. september. Dette arrangementet er et høydepunkt for oss, og vi ser frem til å samles igjen. Jeg har tatt meg noen friheter med organisering</p>
-    <p>Vi er takknemlige for at Ida og hennes foreldre låner oss hytta på Ørrelie 5, Beitostølen, der vi skal overnatte. Det tar ca. 3 timer og 30 minutter å kjøre dit. Hytten har 13 sengeplasser, foreløpig er vi 12 på hytta med min liste(Ingarth og Ronnie sover i bobil. Vi oppfordrer til godt kameratskap og deling av rom.</p>
-    <p>I forberedelsene til Sykkel NM har det vært noe planlegging. Jeg vil ta ansvar for innkjøp av mat, som inkluderer middag på fredag, frokost på lørdag og søndag, pluss snacks. Lørdag kveld drar vi på banketten, og jeg håper det blir en minnerik opplevelse for alle.</p>
-    <p>Vi har også sikret oss biler fra NRBR som vil bistå under arrangementet, Miriam, Ludvig og Kribe har fått låne Caddy fra forebyggende. 
-      Om du skulle ha behov for transport av sykkel ved hjelp av disse Caddyene ta kontakt med en av dem. Gi meg beskjed (Kenny) om det skulle mangle noe informasjon eller noe ikke stemmer så endrer jeg info underveis. </p>
+      <div class="motivation-section">
+        <h2>Motivasjon</h2>
+        <p>
+          Vi er utrolig begeistret for å delta i årets Brann-NM i Sykkel på
+          Beitostølen! Dette er en fantastisk mulighet for oss til å vise vår
+          lidenskap for både brannvesenet og sykling. Gjennom samarbeid, innsats
+          og støtte til hverandre, er vi klare til å konkurrere og skape minner
+          som vil vare livet ut.
+        </p>
+        <p>
+          Denne konkurransen handler ikke bare om å vinne, men også om å
+          representere vårt brannvesen på en positiv måte. Vi har trent hardt,
+          og vi er klare til å gi vårt beste i alle øvelser. Sammen er vi
+          sterke, og vi ser frem til å vise vårt teamånd og vårt engasjement for
+          både brannvesenet og syklingssporten.
+        </p>
+        <p>
+          La oss trå til og gjøre Brann-NM i Sykkel 2023 til en uforglemmelig
+          opplevelse for alle involverte. Med vårt fokus, vår innsats og vår
+          samhørighet, er vi klare til å krysse målstreken med stolthet og
+          glede!
+        </p>
+      </div>
+      <div>
+        <h2>Løypekart for terrengrittet</h2>
+        <img
+          src="https://scontent.fosl1-1.fna.fbcdn.net/v/t39.30808-6/371854226_10159486899501461_6698140238057478625_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=4c1e7d&_nc_ohc=moQjKXSAl1MAX81ZKgf&_nc_ht=scontent.fosl1-1.fna&oh=00_AfCsUfArXLtDFP9uFzD1LSeniT2UAU7gsVohRG7qizkphw&oe=64F76DE2"
+          alt="Terrengritt"
+        />
+      </div>
 
-
-    <div class="motivation-section">
-  <h2>Motivasjon</h2>
-  <p>Vi er utrolig begeistret for å delta i årets Brann-NM i Sykkel på Beitostølen! Dette er en fantastisk mulighet for oss til å vise vår lidenskap for både brannvesenet og sykling. Gjennom samarbeid, innsats og støtte til hverandre, er vi klare til å konkurrere og skape minner som vil vare livet ut.</p>
-  <p>Denne konkurransen handler ikke bare om å vinne, men også om å representere vårt brannvesen på en positiv måte. Vi har trent hardt, og vi er klare til å gi vårt beste i alle øvelser. Sammen er vi sterke, og vi ser frem til å vise vårt teamånd og vårt engasjement for både brannvesenet og syklingssporten.</p>
-  <p>La oss trå til og gjøre Brann-NM i Sykkel 2023 til en uforglemmelig opplevelse for alle involverte. Med vårt fokus, vår innsats og vår samhørighet, er vi klare til å krysse målstreken med stolthet og glede!</p>
-</div>
-    <div>
-      <h2>Løypekart for terrengrittet</h2>
-      <img src="https://scontent.fosl1-1.fna.fbcdn.net/v/t39.30808-6/371854226_10159486899501461_6698140238057478625_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=4c1e7d&_nc_ohc=moQjKXSAl1MAX81ZKgf&_nc_ht=scontent.fosl1-1.fna&oh=00_AfCsUfArXLtDFP9uFzD1LSeniT2UAU7gsVohRG7qizkphw&oe=64F76DE2" alt="Terrengritt">
+      <div>
+        <h2>Løypekart for landevei rittet</h2>
+        <img
+          src="https://scontent.fosl1-1.fna.fbcdn.net/v/t39.30808-6/365689165_10159447134891461_3001256505507103501_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=4c1e7d&_nc_ohc=CLhRv3Zt1s8AX-PjE3x&_nc_ht=scontent.fosl1-1.fna&oh=00_AfCI4T2y9MVMwVi1LpWLXihPJt88GCWuwDg7Dqi-EbzJ0w&oe=64F6FB2F"
+          alt="Landeveigritt"
+        />
+      </div>
     </div>
 
-    <div>
-      <h2>Løypekart for landevei rittet</h2>
-      <img src="https://scontent.fosl1-1.fna.fbcdn.net/v/t39.30808-6/365689165_10159447134891461_3001256505507103501_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=4c1e7d&_nc_ohc=CLhRv3Zt1s8AX-PjE3x&_nc_ht=scontent.fosl1-1.fna&oh=00_AfCI4T2y9MVMwVi1LpWLXihPJt88GCWuwDg7Dqi-EbzJ0w&oe=64F6FB2F" alt="Landeveigritt">
+    <div class="container">
+      <div class="participant-list">
+        <h2>Deltakerliste</h2>
+        <ol class="participant">
+          <li class="participant">
+            <h3>Kenny</h3>
+            <ul class="responsibilities">
+              <li>Ansvaret for BMW-skolebilen</li>
+              <li>Ansvaret for innkjøp av mat</li>
+            </ul>
+            <p>Reiser med: Håkon</p>
+            <p>Møtested: Skedsmo T-21</p>
+            <p>Avreisetid: Fredag morgen rundt 09:00</p>
+          </li>
+          <li class="participant">
+            <h3>Håkon</h3>
+            <p>Reiser med: Kenny</p>
+            <p>Møtested: Skedsmo T-21</p>
+            <p>Avreisetid: Fredag morgen rundt 09:00</p>
+          </li>
+          <li class="participant">
+            <h3>Ullrik</h3>
+            <p>Reiser med: Ludvig?</p>
+            <p>Møtested:</p>
+            <p>Avreisetid: Fredag etter vakt?</p>
+          </li>
+          <li class="participant">
+            <h3>Lasse</h3>
+            <ul class="responsibilities">
+              <li>Ansvaret for Mercedes-skolebilen (Den gule)</li>
+            </ul>
+            <p>Reiser med: -</p>
+            <p>Møtested: -</p>
+            <p>Avreisetid: Fredag morgen</p>
+          </li>
+          <li class="participant">
+            <h3>Gjøran</h3>
+            <p>Reiser med: -</p>
+            <p>Møtested: -</p>
+            <p>Avreisetid: -</p>
+          </li>
+          <li class="participant">
+            <h3>Ørjan</h3>
+            <p>Reiser med: -</p>
+            <p>Møtested: -</p>
+            <p>Avreisetid: -</p>
+          </li>
+          <li class="participant">
+            <h3>Ronnie</h3>
+            <p>Reiser med: Ingarth</p>
+            <p>Møtested: Nittedal</p>
+            <p>Avreisetid: Fredag morgen</p>
+          </li>
+          <li class="participant">
+            <h3>Miriam</h3>
+            <ul class="responsibilities">
+              <li>
+                Ansvaret for en Caddy fra forebyggende (Kontakt Tor-Åsmund)
+              </li>
+            </ul>
+            <p>Reiser med: Ida</p>
+            <p>Møtested: [Møtested for Miriam og Ida]</p>
+            <p>Avreisetid: [Avreisetid for Miriam og Ida]</p>
+          </li>
+          <li class="participant">
+            <h3>Ludvig</h3>
+            <ul class="responsibilities">
+              <li>
+                Ansvaret for en Caddy lånt av forebyggende (Ta kontakt med
+                Tor-Åsmund - Lørenskog)
+              </li>
+            </ul>
+            <p>Reiser med: -</p>
+            <p>Møtested: -</p>
+            <p>Avreisetid: Fredag etter vakt</p>
+          </li>
+          <li class="participant">
+            <h3>Ingarth</h3>
+            <p>Reiser med: Ronnie</p>
+            <p>Møtested: Nittedal</p>
+            <p>Avreisetid: Fredag morgen</p>
+          </li>
+          <li class="participant">
+            <h3>Eddy</h3>
+            <p>Reiser med: Alene</p>
+            <p>Møtested: -</p>
+            <p>Avreisetid: Torsdag morgen</p>
+          </li>
+          <li class="participant">
+            <h3>Marius</h3>
+            <p>Reiser med: Alene</p>
+            <p>Møtested: -</p>
+            <p>Avreisetid: Fredag morgen</p>
+          </li>
+          <li class="participant">
+            <h3>Kribe</h3>
+            <p>Reiser alene</p>
+            <p>Møtested: Lørenskog</p>
+            <p>Avreisetid: Fredag morgen</p>
+          </li>
+          <li class="participant">
+            <h3>Rachel</h3>
+            <p>Reiser med: Jørn Flatner</p>
+            <p>Møtested: [Møtested for Rachel og Jørn]</p>
+            <p>Avreisetid: Fredag formiddag?</p>
+          </li>
+          <li class="participant">
+            <h3>Jørn Flatner</h3>
+            <p>Reiser med: Rachel</p>
+            <p>Møtested: [Møtested for Rachel og Jørn]</p>
+            <p>Avreisetid: Fredag formiddag?</p>
+          </li>
+          <!-- ... (Gjenta denne strukturen for hver deltaker) ... -->
+        </ol>
+      </div>
+      <div class="motivation-section">
+        <!-- ... (tidligere motivasjonstekst) ... -->
+      </div>
     </div>
-  </div>
+    <footer>
+      <p>&copy; 2023 Brann-NM i Sykkel. Alle rettigheter reservert.</p>
+    </footer>
+    <!-- the DIV that will contain the widget -->
+    <div class="weatherWidget"></div>
 
-  
-  
-  <div class="container">
-    <div class="participant-list">
-      <h2>Deltakerliste</h2>
-      <ol class="participant">
-        <li class="participant">
-          <h3>Kenny</h3>
-          <ul class="responsibilities">
-            <li>Ansvaret for BMW-skolebilen</li>
-            <li>Ansvaret for innkjøp av mat</li>
-          </ul>
-          <p>Reiser med: Håkon</p>
-          <p>Møtested: Skedsmo T-21</p>
-          <p>Avreisetid: Fredag morgen rundt 09:00</p>
-        </li>
-        <li class="participant">
-          <h3>Håkon</h3>
-          <p>Reiser med: Kenny</p>
-          <p>Møtested: Skedsmo T-21</p>
-          <p>Avreisetid: Fredag morgen rundt 09:00</p>
-        </li>
-        <li class="participant">
-          <h3>Ullrik</h3>
-          <p>Reiser med: Ludvig?</p>
-          <p>Møtested: </p>
-          <p>Avreisetid: Fredag etter vakt?</p>
-        </li>
-        <li class="participant">
-          <h3>Lasse</h3>
-          <ul class="responsibilities">
-            <li>Ansvaret for Mercedes-skolebilen (Den gule)</li>
-          </ul>
-          <p>Reiser med: -</p>
-          <p>Møtested: -</p>
-          <p>Avreisetid: Fredag morgen</p>
-        </li>
-        <li class="participant">
-          <h3>Gjøran</h3>
-          <p>Reiser med: -</p>
-          <p>Møtested: -</p>
-          <p>Avreisetid: -</p>
-        </li>
-        <li class="participant">
-          <h3>Ørjan</h3>
-          <p>Reiser med: -</p>
-          <p>Møtested: -</p>
-          <p>Avreisetid: -</p>
-        </li>
-        <li class="participant">
-          <h3>Ronnie</h3>
-          <p>Reiser med: Ingarth</p>
-          <p>Møtested: Nittedal</p>
-          <p>Avreisetid: Fredag morgen</p>
-        </li>
-        <li class="participant">
-          <h3>Miriam</h3>
-          <ul class="responsibilities">
-            <li>Ansvaret for en Caddy fra forebyggende (Kontakt Tor-Åsmund)</li>
-          </ul>
-          <p>Reiser med: Ida</p>
-          <p>Møtested: [Møtested for Miriam og Ida]</p>
-          <p>Avreisetid: [Avreisetid for Miriam og Ida]</p>
-        </li>
-        <li class="participant">
-          <h3>Ludvig</h3>
-          <ul class="responsibilities">
-            <li>Ansvaret for en Caddy lånt av forebyggende (Ta kontakt med Tor-Åsmund - Lørenskog)</li>
-          </ul>
-          <p>Reiser med: -</p>
-          <p>Møtested: -</p>
-          <p>Avreisetid: Fredag etter vakt</p>
-        </li>
-        <li class="participant">
-          <h3>Ingarth</h3>
-          <p>Reiser med: Ronnie</p>
-          <p>Møtested: Nittedal</p>
-          <p>Avreisetid: Fredag morgen</p>
-        </li>
-        <li class="participant">
-          <h3>Eddy</h3>
-          <p>Reiser med: Alene</p>
-          <p>Møtested: -</p>
-          <p>Avreisetid: Torsdag morgen</p>
-        </li>
-        <li class="participant">
-          <h3>Marius</h3>
-          <p>Reiser med: Alene</p>
-          <p>Møtested: -</p>
-          <p>Avreisetid: Fredag morgen</p>
-        </li>
-        <li class="participant">
-          <h3>Kribe</h3>
-          <p>Reiser alene</p>
-          <p>Møtested: Lørenskog</p>
-          <p>Avreisetid: Fredag morgen</p>
-        </li>
-        <li class="participant">
-          <h3>Rachel</h3>
-          <p>Reiser med: Jørn Flatner</p>
-          <p>Møtested: [Møtested for Rachel og Jørn]</p>
-          <p>Avreisetid: Fredag formiddag?</p>
-        </li>
-        <li class="participant">
-          <h3>Jørn Flatner</h3>
-          <p>Reiser med: Rachel</p>
-          <p>Møtested: [Møtested for Rachel og Jørn]</p>
-          <p>Avreisetid: Fredag formiddag?</p>
-        </li>
-        <!-- ... (Gjenta denne strukturen for hver deltaker) ... -->
-      </ol>
-    </div>
-    <div class="motivation-section">
-      <!-- ... (tidligere motivasjonstekst) ... -->
-    </div>
-  </div>
-  <footer>
-    <p>&copy; 2023 Brann-NM i Sykkel. Alle rettigheter reservert.</p>
-  </footer>
-  <!-- the DIV that will contain the widget -->
-<div class="weatherWidget" ></div>
+    <script type="module">
+      // Din OpenWeatherMap API-nøkkel
+      const apiKey = "03b9ff1b8a4facf6a7786a5a1bce24c5";
 
- <script>
-        // Din OpenWeatherMap API-nøkkel
-        const apiKey = '03b9ff1b8a4facf6a7786a5a1bce24c5';
+      // Lokasjon for værvarsel (Oslo i dette tilfellet)
+      const weatherLocation = "Heggenes, NO";
 
-        // Lokasjon for værvarsel (Oslo i dette tilfellet)
-        const location = 'Heggenes, NO';
+      // URL for værdata
+      const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${weatherLocation}&units=metric&appid=${apiKey}`;
 
-        // URL for værdata
-        const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=${apiKey}`;
+      // Weather forecast upper limit in seconds
+      const outerRange = 432000;
+
+      function getNextWeekdayNoon(targetWeekday) {
+        let today = new Date();
+        const daysUntilTarget = (targetWeekday - today.getDay() + 7) % 7 || 7;
+        today.setDate(today.getDate() + daysUntilTarget);
+        today.setHours(12, 0, 0, 0);
+        return today.getTime();
+      }
+
+      // Free api gives next 5 days, at 3 hour intervals, have to find closest to target
+      async function fetchWeatherNearTimestamp(targetTimestamp) {
+        const now = new Date();
+        const secondsFromTarget = Math.abs(now.getTime()-targetTimestamp) 
+        if (secondsFromTarget > outerRange) { // 5 days in seconds
+          return {
+            temperature: 'ukjent',
+            description: `Utenfor tilgjengelig 5 dagers værmelding`,
+          }
+        }
 
         // Hent værdata fra OpenWeatherMap
-        fetch(apiUrl)
-            .then(response => response.json())
-            .then(data => {
-                const temperature = data.main.temp;
-                const condition = data.weather[0].description;
+        return await fetch(apiUrl)
+          .then((response) => response.json())
+          .then((data) => {
+            // We find the closest to the target timestamp
+            let closestElement = null;
+            let closestDifference = Infinity;
+            // Find closest to target timestamp
+            data.list.forEach((element) => {
+              const difference = Math.abs(element.dt - targetTimestamp);
+              if (difference < closestDifference) {
+                closestDifference = difference;
+                closestElement = element;
+              }
+            });
+            return {
+              temperature: `${closestElement.main.temp}°C`,
+              description: closestElement.weather[0].description,
+            };
+          })
+          .catch((error) =>
+            console.error("Feil ved henting av værdata:", error)
+          );
+      }
 
-                // Oppdater HTML med værdata
-                document.getElementById('temperature').textContent = temperature;
-                document.getElementById('condition').textContent = condition;
-            })
-            .catch(error => console.error('Feil ved henting av værdata:', error));
+      const fridayTimestamp = getNextWeekdayNoon(5); // 5 is Friday, 0 is Sunday
+      const fridayWeather = await fetchWeatherNearTimestamp(fridayTimestamp);
+      // Oppdater HTML med værdata
+      document.getElementById("temperature-friday").textContent =
+        fridayWeather.temperature;
+      
+      document.getElementById("condition-friday").textContent =
+        fridayWeather.description;
+
+
+      const saturdayTimestamp = getNextWeekdayNoon(6); // 6 is saturday, 0 is Sunday
+      const saturdayWeather = await fetchWeatherNearTimestamp(saturdayTimestamp);
+      // Oppdater HTML med værdata
+      document.getElementById("temperature-saturday").textContent =
+        saturdayWeather.temperature;
+      document.getElementById("condition-saturday").textContent =
+        saturdayWeather.description;
     </script>
-
-</body>
+    </script>
+  </body>
 </html>
