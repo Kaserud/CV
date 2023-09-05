@@ -292,7 +292,7 @@
       const apiKey = "03b9ff1b8a4facf6a7786a5a1bce24c5";
 
       // Lokasjon for værvarsel (Oslo i dette tilfellet)
-      const weatherLocation = "Heggenes, NO";
+      const weatherLocation = "Heggenes,NO";
 
       // URL for værdata
       const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${weatherLocation}&units=metric&appid=${apiKey}`;
@@ -311,7 +311,7 @@
       // Free api gives next 5 days, at 3 hour intervals, have to find closest to target
       async function fetchWeatherNearTimestamp(targetTimestamp) {
         const now = new Date();
-        const secondsFromTarget = Math.abs(now.getTime()-targetTimestamp) 
+        const secondsFromTarget = Math.abs(now.getTime()-targetTimestamp) / 1000
         if (secondsFromTarget > outerRange) { // 5 days in seconds
           return {
             temperature: 'ukjent',
